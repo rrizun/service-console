@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+*{font-family: 'Ubuntu', sans-serif;}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.example-icon {
+padding: 0 14px;
+}
+  
+.example-spacer {
+flex: 1 1 auto;
+}
+
+.foo{margin:6pt; padding:6pt; border-bottom:1pt solid #ccc;border-right:1pt solid #ccc}
