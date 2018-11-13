@@ -1,12 +1,16 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule, AuthGuard } from './app-routing.module';
-import { AppComponent, LoginComponent, PageOneComponent, PageTwoComponent, SecureComponent, LoremIpsumComponent } from './app.component';
+import { AppComponent, DialogOverviewExampleDialog, LoginComponent, LoremIpsumComponent, PageOneComponent, PageTwoComponent, SecureComponent } from './app.component';
+import { BusyInterceptor } from './BusyInterceptor';
 import { RemoteService } from './RemoteService';
 
 @NgModule({
@@ -16,7 +20,8 @@ import { RemoteService } from './RemoteService';
     PageOneComponent,
     PageTwoComponent,
     SecureComponent,
-    LoremIpsumComponent
+    LoremIpsumComponent,
+    DialogOverviewExampleDialog
   ],
   imports: [
     BrowserModule,
@@ -24,10 +29,18 @@ import { RemoteService } from './RemoteService';
     BrowserAnimationsModule,
     HttpClientModule,
     MatButtonModule,
-    MatToolbarModule,
-    MatIconModule
+    MatDialogModule,
+    MatIconModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatToolbarModule
   ],
-  providers: [AuthGuard, RemoteService],
-  bootstrap: [AppComponent]
+  providers: [
+    AuthGuard,
+    RemoteService,
+    { provide: HTTP_INTERCEPTORS, useClass: BusyInterceptor, multi: true },
+  ],
+  bootstrap: [AppComponent],
+  entryComponents:[DialogOverviewExampleDialog]
 })
 export class AppModule { }

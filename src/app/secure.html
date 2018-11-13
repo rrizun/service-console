@@ -1,4 +1,10 @@
-<div style="flex:1;display:flex;flex-direction: column">
+
+<div *ngIf="!config" style="flex:1;display:flex;align-items:center;justify-content:center;">
+    <mat-spinner></mat-spinner>
+
+</div>
+
+<div *ngIf="config" style="flex:1;display:flex;flex-direction: column">
 
     <mat-toolbar color="primary">
         <mat-toolbar-row>
@@ -9,85 +15,27 @@
         </mat-toolbar-row>
     </mat-toolbar>
 
+    <mat-progress-bar *ngIf="remoteService.busy>0" mode="indeterminate"></mat-progress-bar>
+
     <div class="foo" style="display:flex;align-items:center;justify-content: space-around;">
         <a href="#">Users</a>
         <a href="#">Organizations</a>
         <a href="#">Service Accounts</a>
         <a href="#">Flights</a>
-        
-        <a href="#">Users</a>
-        <a href="#">Organizations</a>
-        <a href="#">Service Accounts</a>
-        <a href="#">Flights</a>
     </div>
 
-    <div style="flex:5;display:flex;qborder:1px solid red">
+    <div style="flex:5;display:flex">
         <router-outlet></router-outlet>
     </div>
 
-    <div style="text-align: center">Console</div>
+    <div class="mat-h1" style="text-align: center">Console {{remoteService.messages.length>0?"("+remoteService.messages.length+")":""}}</div>
 
     <div class="foo" style="flex:1;display:flex">
-        <div  style="flex:1;color:#aaa;overflow-x:hidden;overflow-y:auto">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore
-                magna aliqua. Sit amet consectetur adipiscing elit pellentesque habitant morbi tristique. Id aliquet risus
-                feugiat in ante metus dictum. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Augue
-                mauris augue neque gravida in fermentum et sollicitudin. Tincidunt tortor aliquam nulla facilisi cras.
-                Rutrum
-                quisque non tellus orci ac auctor augue mauris augue. Ultrices neque ornare aenean euismod elementum nisi.
-                Suscipit adipiscing bibendum est ultricies integer. Sed sed risus pretium quam vulputate dignissim
-                suspendisse
-                in est.</p>
-    
-            <p>Lacinia at quis risus sed vulputate. Nisi porta lorem mollis aliquam. Hendrerit dolor magna eget est lorem
-                ipsum dolor. Ullamcorper eget nulla facilisi etiam dignissim diam quis. Eu non diam phasellus vestibulum
-                lorem
-                sed risus. Sodales neque sodales ut etiam. Vel eros donec ac odio tempor orci. Massa ultricies mi quis
-                hendrerit dolor magna. Turpis massa tincidunt dui ut ornare lectus sit. Sed libero enim sed faucibus turpis
-                in.
-                Ut aliquam purus sit amet. Mus mauris vitae ultricies leo integer malesuada. Arcu non sodales neque sodales
-                ut
-                etiam sit amet nisl. Ut faucibus pulvinar elementum integer. Vitae elementum curabitur vitae nunc sed velit
-                dignissim. Convallis posuere morbi leo urna molestie at elementum eu. Lacus vel facilisis volutpat est
-                velit
-                egestas dui id. Senectus et netus et malesuada. Urna porttitor rhoncus dolor purus non. Enim tortor at
-                auctor
-                urna nunc.</p>
-    
-            <p>Lacinia at quis risus sed vulputate odio. Cursus in hac habitasse platea dictumst quisque sagittis purus.
-                Sed
-                egestas egestas fringilla phasellus faucibus scelerisque. Nibh tortor id aliquet lectus proin nibh.
-                Vulputate
-                ut pharetra sit amet aliquam id diam maecenas ultricies. Nibh sed pulvinar proin gravida hendrerit lectus.
-                Aenean pharetra magna ac placerat. Orci nulla pellentesque dignissim enim sit. Ornare suspendisse sed nisi
-                lacus sed viverra tellus in. Viverra ipsum nunc aliquet bibendum enim facilisis.</p>
-    
-            <p>Est sit amet facilisis magna etiam. Nunc sed velit dignissim sodales ut eu sem. Integer eget aliquet nibh
-                praesent tristique magna. In pellentesque massa placerat duis ultricies. Commodo viverra maecenas accumsan
-                lacus vel facilisis volutpat est velit. Pharetra et ultrices neque ornare aenean euismod elementum nisi
-                quis.
-                At risus viverra adipiscing at in tellus integer. Gravida rutrum quisque non tellus orci ac. Tempus
-                imperdiet
-                nulla malesuada pellentesque elit eget gravida. Nunc lobortis mattis aliquam faucibus purus in. Aenean sed
-                adipiscing diam donec adipiscing tristique risus. Mauris a diam maecenas sed enim ut sem viverra aliquet.
-                Pretium vulputate sapien nec sagittis. Posuere ac ut consequat semper viverra nam libero.</p>
-    
-            <p>Urna porttitor rhoncus dolor purus non enim. Donec et odio pellentesque diam. Odio facilisis mauris sit amet
-                massa vitae. Morbi tristique senectus et netus et malesuada fames. Odio ut enim blandit volutpat maecenas
-                volutpat blandit aliquam. Diam sollicitudin tempor id eu nisl. Dui nunc mattis enim ut tellus elementum
-                sagittis vitae et. Amet nisl suscipit adipiscing bibendum est ultricies. Vitae aliquet nec ullamcorper sit
-                amet
-                risus nullam eget felis. Nibh tellus molestie nunc non blandit massa enim nec. A scelerisque purus semper
-                eget.
-                Sit amet facilisis magna etiam tempor orci eu. Sed adipiscing diam donec adipiscing tristique risus nec.
-                Ipsum
-                dolor sit amet consectetur. Eu consequat ac felis donec et odio. Vestibulum sed arcu non odio euismod. Sed
-                nisi
-                lacus sed viverra tellus in hac habitasse. Convallis aenean et tortor at risus. Malesuada fames ac turpis
-                egestas sed tempus urna et pharetra. Est ante in nibh mauris.</p>
+        <div style="flex:1;color:#777;overflow-x:hidden;overflow-y:auto">
+            <pre *ngFor="let message of remoteService.messages">
+                {{ message }}
+            </pre>
         </div>
-    
     </div>
 
 </div>

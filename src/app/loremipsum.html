@@ -1,6 +1,17 @@
 <div style="flex:1;display:flex;flex-direction: column">
-    <div style="font-weight:qbold;text-align:center">Lorem Ipsum</div>
-    <div style="flex:1;color:#aaa;overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling: touch">
+    <div class="mat-h1" style="text-align:center">Lorem Ipsum</div>
+
+    <div>
+        <!-- <button mat-fab>
+                <mat-icon>add</mat-icon>
+        </button> -->
+        <button mat-flat-button color="primary" (click)="get400()">NEW SERVICE ACCOUNT</button>
+        <button mat-flat-button color="accent" (click)="openDialog()">NEW FLIGHT PLAN</button>
+    </div>
+
+    <img style="width:50%" src="https://www.qualcomm.com/media/documents/files/qualcomm-logo.png">
+
+    <div class="mat-body" style="flex:1;overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling: touch">
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
         standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
         type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
