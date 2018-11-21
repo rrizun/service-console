@@ -1,8 +1,10 @@
-import { Component, Inject } from "@angular/core";
+import { Component, Inject, ViewChild } from "@angular/core";
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { RemoteService } from "./RemoteService";
 import { finalize } from "rxjs/operators";
 import { LogHelper } from "./LogHelper";
+import { Button } from "protractor";
+import { MatButton } from "@angular/material/button";
 
 @Component({
   selector: "app-root",
@@ -21,9 +23,25 @@ export class AppComponent {
   styles:[":host{flex:1;display:flex}"]
 })
 export class LoginComponent {
+
+  @ViewChild('loginButton')
+  loginButton;
+
   constructor() {
 
   }
+
+  ngOnInit() {
+    this.log("ngOnInit");
+    setTimeout(()=>{
+      this.loginButton.focus();
+    },0);
+  }
+
+  private log(...args: any[]) {
+    new LogHelper(this).log(args);
+  }
+
 }
 
 /**
@@ -46,6 +64,17 @@ export class SecureComponent {
       this.config = config;
     });
   }
+
+  now(): string {
+    let s = new Date().toISOString();
+    this.log(s);
+    return "2018-11-21T14:02:32.426Z";
+  }
+
+  private log(...args: any[]) {
+    new LogHelper(this).log(args);
+  }
+
 }
 
 /**

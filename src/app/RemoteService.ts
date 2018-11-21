@@ -21,8 +21,10 @@ export class RemoteService {
 
     }
 
-    state() {
-        
+    getState() {
+        this.http.get<void>("/api").pipe().subscribe()
+        this.http.get<void>("/client-remote").pipe().subscribe()
+        this.http.get<void>("/service-remote").pipe().subscribe()
     }
 
     /**
@@ -36,9 +38,7 @@ export class RemoteService {
      * get400
      */
     get400(): Observable<void> {
-        return of().pipe(switchMap(()=>{
-            return this.http.get<void>("http://httpbin.org/status/400");
-        }));
+        return this.http.get<void>("http://httpbin.org/status/400");
     }
 
     private log(...args: any[]) {

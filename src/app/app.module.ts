@@ -1,5 +1,5 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,6 +12,9 @@ import { AppRoutingModule, AuthGuard } from './app-routing.module';
 import { AppComponent, DialogOverviewExampleDialog, LoginComponent, LoremIpsumComponent, PageOneComponent, PageTwoComponent, SecureComponent } from './app.component';
 import { BusyInterceptor } from './BusyInterceptor';
 import { RemoteService } from './RemoteService';
+
+import "time-elements/dist/time-elements.js"
+// import "time-elements/dist/time-elements-legacy.js"
 
 @NgModule({
   declarations: [
@@ -41,6 +44,7 @@ import { RemoteService } from './RemoteService';
     { provide: HTTP_INTERCEPTORS, useClass: BusyInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   entryComponents:[DialogOverviewExampleDialog]
 })
 export class AppModule { }

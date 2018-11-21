@@ -24,6 +24,34 @@
         <a href="#">Flights</a>
     </div>
 
+    <div>
+        <div> local-time:
+                {{now()|date:"medium"}}
+                <!-- <local-time datetime="2018-11-21T05:30:00Z">2018-11-21T05:30:00Z</local-time> -->
+        </div>
+    
+        <div style="color:#777">
+            relative-time:
+            <relative-time [attr.datetime]="now()"></relative-time>
+        </div>
+    
+        <div>
+            time-until:
+            <time-until [attr.datetime]="now()">
+            </time-until>
+        </div>
+    
+        <div>time-ago:
+            <time-ago datetime="2012-04-01T16:30:00-08:00">
+            </time-ago>
+        </div>
+    
+        <div>time-ago-micro:
+            <time-ago datetime="2012-04-01T16:30:00-08:00" format="micro">
+            </time-ago>
+        </div>
+                              
+                
     <div style="flex:5;display:flex">
         <router-outlet></router-outlet>
     </div>
